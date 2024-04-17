@@ -14,16 +14,16 @@ def serve_fig_out_tech_stack(freq):
     df['date'] = pd.to_datetime(df['date'])
 
     if freq == "M":
-        df = df.groupby([pd.Grouper(key="date", freq="M"), pd.Grouper('tech')]).mean()
+        df = df.groupby([pd.Grouper(key="date", freq="M"), pd.Grouper('type')]).mean()
     elif freq == "D":
-        df = df.groupby([pd.Grouper(key="date", freq="D"), pd.Grouper('tech')]).mean()
+        df = df.groupby([pd.Grouper(key="date", freq="D"), pd.Grouper('type')]).mean()
     elif freq == "W":
-        df = df.groupby([pd.Grouper(key="date", freq="W"), pd.Grouper('tech')]).mean()
+        df = df.groupby([pd.Grouper(key="date", freq="W"), pd.Grouper('type')]).mean()
     else:
-        df = df.groupby([pd.Grouper(key="date", freq="H"), pd.Grouper('tech')]).mean()
+        df = df.groupby([pd.Grouper(key="date", freq="H"), pd.Grouper('type')]).mean()
     df = df.reset_index()
 
-    fig = px.area(df, x="date", y="value", color="tech")
+    fig = px.area(df, x="date", y="value", color="type")
 
     create_update_layout_fig(fig, "Generation per Production Type (MW)")
 
