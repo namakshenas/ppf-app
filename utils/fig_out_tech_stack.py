@@ -8,7 +8,7 @@ import os
 def serve_fig_out_tech_stack(freq):
     df = pd.read_csv(
         os.path.join(os.path.dirname('./data/'), 'tech_stack.csv'),
-        delimiter=';',
+        delimiter=',',
     )
 
     df['date'] = pd.to_datetime(df['date'])
